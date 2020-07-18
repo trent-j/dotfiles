@@ -16,6 +16,7 @@ function setup_git() {
 
 function setup() {
     echo "setting up enterprise"
+    setup_git
 }
 
 # Check if host is an enterprise bp instance. If it is run 
