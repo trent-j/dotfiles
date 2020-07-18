@@ -1,6 +1,3 @@
 #!/bin/bash
 
-# Allow root login
-sudo sed -i 's/.*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
-sudo mkdir -p /root/.ssh && sudo cp /workspace/.ssh/authorized_keys $_
-sudo systemctl restart ssh
+find "$(cd "$(dirname "$0")" && pwd)" -name 'setup.sh' -mindepth 2 -exec bash -c "chmod +x {} && {}" \;
