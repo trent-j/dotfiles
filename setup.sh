@@ -1,3 +1,3 @@
 #!/bin/bash
 
-find "$(cd "$(dirname "$0")" && pwd)" -name 'setup.sh' -mindepth 2 -exec bash -c "chmod +x {} && {}" \;
+find "$(cd "$(dirname "$0")" && pwd)" -mindepth 2 -name 'setup.sh' -exec bash -c "chmod +x {} && {}" \;
