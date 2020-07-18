@@ -1,13 +1,17 @@
 #!/bin/bash
 
-DIR="$(cd "$(dirname "$0")/.." && pwd)"
+DIR="$(cd "$(dirname "$0")" && pwd)"
 
+# Allow root login
 function setup_ssh() {
-
-    # Allow root login
     sudo sed -i 's/.*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
     sudo mkdir -p /root/.ssh && sudo cp /workspace/.ssh/authorized_keys $_
     sudo systemctl restart ssh
+}
+
+function setup_git() {
+    echo "dir: $DIR"
+    # cp "$DIR"
 }
 
 function setup() {
