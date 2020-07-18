@@ -2,16 +2,15 @@
 
 DIR="$(cd "$(dirname "$0")" && pwd)"
 
+function setup_git() {
+    sudo cp "$DIR/../git/.gitconfig" /root
+}
+
 # Allow root login
 function setup_ssh() {
     sudo sed -i 's/.*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
     sudo mkdir -p /root/.ssh && sudo cp /workspace/.ssh/authorized_keys $_
     sudo systemctl restart ssh
-}
-
-function setup_git() {
-    echo "dir: $DIR"
-    # cp "$DIR"
 }
 
 function setup() {
