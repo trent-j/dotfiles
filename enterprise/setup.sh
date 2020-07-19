@@ -13,12 +13,14 @@ function setup_git() {
 # Allow root login
 function setup_ssh() {
     sudo sed -i 's/.*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
-    sudo mkdir -p /root/.ssh && sudo cp /workspace/.ssh/authorized_keys "$_"
+    sudo mkdir -p /root/.ssh 
+    sudo cat /workspace/.ssh/authorized_keys | sudo tee -a /root/.ssh/authorized_keys
     sudo systemctl restart ssh
 }
 
 function setup() {
     echo "setting up enterprise"
+    setup_ssh
     setup_git
     setup_bash_profile
 }
