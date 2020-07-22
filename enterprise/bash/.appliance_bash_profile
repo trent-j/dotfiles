@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# gh.configs () { ghe_config_wrapper "$1"; }
-# gh.secrets () { ghe_config_wrapper -s "$1"; }
-
 alias gh.configs='ghe_config_wrapper'
 alias gh.secrets='ghe_config_wrapper -s'
 
