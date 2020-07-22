@@ -1,0 +1,3 @@
+#!/bin/bash
+
+alias test2='echo "steak"'
