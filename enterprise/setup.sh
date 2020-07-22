@@ -13,6 +13,7 @@ setup_git () {
 # Allow root login
 setup_ssh () {
     sudo sed -i 's/.*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+    echo 'AcceptEnv OCTOFACTORY_TOKEN' | sudo tee -a /etc/ssh/sshd_config
     sudo mkdir -p /root/.ssh && sudo cp "$DIR/ssh/config" "$_"
     sudo cat /workspace/.ssh/authorized_keys | sudo tee -a /root/.ssh/authorized_keys
     sudo systemctl restart ssh
