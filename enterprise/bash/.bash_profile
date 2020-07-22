@@ -20,8 +20,8 @@ alias gh.destroy='sudo shutdown 0'
 
 gh.ssh () {
 
-    BASH_PROFILE='/workspace/.dotfiles/enterprise/.appliance_bash_profile'
-    [[ -f $BASH_PROFILE ]] && chroot-scp.sh --to "$BASH_PROFILE" /home/admin/.bash_profile
+    BASH_PROFILE='/workspace/.dotfiles/enterprise/bash/.appliance_bash_profile'
+    [[ -f $BASH_PROFILE ]] && chroot-scp.sh --to "$BASH_PROFILE" /home/admin/.bash_profile > /dev/null
     
     if [[ $# -eq 0 ]]; then
         chroot-ssh.sh
@@ -29,6 +29,3 @@ gh.ssh () {
         chroot-ssh.sh . .bash_profile && "$@"
     fi
 }
-
-# gh.configs () { gh.ssh ". .bash_profile && gh.configs $1"; }
-# gh.secrets () {}

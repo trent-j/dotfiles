@@ -3,23 +3,22 @@
 DIR="$(cd "$(dirname "$0")" && pwd)"
 
 setup_bash_profile () {
-    sudo cp "$DIR/.bash_profile" /root
+    sudo cp "$DIR/bash/.bash_profile" /root
 }
 
 setup_git () {
-    sudo cp "$DIR/../git/.gitconfig" /root
+    sudo cp "$DIR/git/.gitconfig" /root
 }
 
 # Allow root login
 setup_ssh () {
     sudo sed -i 's/.*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
-    sudo mkdir -p /root/.ssh 
+    sudo mkdir -p /root/.ssh && sudo cp "$DIR/ssh/config" "$_"
     sudo cat /workspace/.ssh/authorized_keys | sudo tee -a /root/.ssh/authorized_keys
     sudo systemctl restart ssh
 }
 
 setup () {
-    echo "setting up enterprise"
     setup_ssh
     setup_git
     setup_bash_profile
