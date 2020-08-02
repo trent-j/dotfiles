@@ -24,9 +24,10 @@ alias gh.info='chroot-info.sh'
 alias gh.configs='gh.ssh ghe_config_wrapper'
 alias gh.secrets='gh.ssh ghe_config_wrapper -s'
 alias gh.proxy='sudo update-reverse-proxy'
-alias gh.init='docker.login && gh.build && gh.start && gh.configure && gh.proxy'
+alias gh.init='gh.cr.update && docker.login && gh.build && gh.start && gh.configure && gh.proxy'
 alias gh.rebuild='gh.stop && gh.reset && gh.build && gh.start && gh.configure'
 alias gh.destroy='sudo shutdown 0'
+alias gh.cr.update='(cd /workspace/enterprise2 && git stash && git fetch origin container-registry && git checkout container-registry)'
 
 gh.ssh () {
 
