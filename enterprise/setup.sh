@@ -8,6 +8,7 @@ setup_bash_profile () {
 
 setup_git () {
     sudo cp "$DIR/git/.gitconfig" /root
+    (cd /workspace/enterprise2 && git fetch origin container-registry && git checkout container-registry)
 }
 
 # Allow root login
