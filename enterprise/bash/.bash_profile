@@ -9,6 +9,7 @@ alias dotfiles.update='cd "$DOTFILES" && git pull origin master && cp "$DOTFILES
 
 # Docker utils
 alias docker.login='docker login octofactory.githubapp.com -u trent-j -p "$OCTOFACTORY_TOKEN"'
+alias docker.gpr.login='docker login https://docker.pkg.github.com -u trent-j -p "$GH_PAT"'
 
 # Enterprise utils
 export PATH="$PATH:/workspace/enterprise2"
@@ -25,7 +26,7 @@ alias gh.info='chroot-info.sh'
 alias gh.configs='gh.ssh ghe_config_wrapper'
 alias gh.secrets='gh.ssh ghe_config_wrapper -s'
 alias gh.proxy='sudo update-reverse-proxy'
-alias gh.init='gh.cr.update && docker.login && gh.build && gh.start && gh.configure && gh.proxy'
+alias gh.init='gh.cr.update && docker.login && docker.gpr.login && gh.build && gh.start && gh.configure && gh.proxy'
 alias gh.rebuild='gh.stop && gh.reset && gh.build && gh.start && gh.configure'
 alias gh.destroy='sudo shutdown 0'
 alias gh.cr.update='(cd /workspace/enterprise2 && git stash && git fetch origin container-registry && git checkout container-registry)'
