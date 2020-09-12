@@ -50,7 +50,7 @@ gh.ssh () {
 gh.patch () {
     sudo sed -i 's/export GITHUB_SHA.*/export GITHUB_SHA=${GITHUB_SHA:-8f21f606f6ade467daa260e3b77252fc6520c214}/' /workspace/enterprise2/configuration.sh
     sudo sed -i 's/export HYDRO_SCHEMAS_SHA.*/export HYDRO_SCHEMAS_SHA=${HYDRO_SCHEMAS_SHA:-7676cd9248c89105157a344d4a78e54e9eaf93aa}/' /workspace/enterprise2/configuration.sh
-    sudo sed -i 's/registry-metadata.*/registry-metadata=octofactory.githubapp.com\/moda-artifacts-docker\/registry-metadata:fb9ed6b420c0fe85e25eb1d5189e92a32eb3fe8f@sha256:38c11e42fdf9de389ed452dec93ea6cd61ae97470b6e128fc3168fab84b52822/' /workspace/enterprise2/docker-image-list-ghe
+    # sudo sed -i 's/registry-metadata.*/registry-metadata=octofactory.githubapp.com\/moda-artifacts-docker\/registry-metadata:fb9ed6b420c0fe85e25eb1d5189e92a32eb3fe8f@sha256:38c11e42fdf9de389ed452dec93ea6cd61ae97470b6e128fc3168fab84b52822/' /workspace/enterprise2/docker-image-list-ghe
     sudo sed -i 's/container-registry.*/container-registry=octofactory.githubapp.com\/moda-artifacts-docker\/container-registry:2dfe222358e7ce4c4bf3f52dc8d6ac94c061f8d4@sha256:1c6af44d41f16e2dd08da3936beefbb9544cae047b42fbbf41fbe945b02f2247/' /workspace/enterprise2/docker-image-list-ghe
     sudo sed -i "s/  initialize_if_unset 'secrets.packages-v2.blob-store' 's3'.*/  initialize_if_unset 'secrets.packages-v2.blob-store' 'filesystem'/" /workspace/enterprise2/vm_files/usr/local/share/enterprise/ghe-secrets-init
 }
