@@ -18,7 +18,7 @@ export PATH="$PATH:/workspace/enterprise2"
 export OVERLAY_VM_FILES='yes'
 export ENABLE_HYDRO=1
 export ENABLE_ISOLATION=1
-export ENABLE_PACKAGES=1
+# export ENABLE_PACKAGES=1
 export ENABLE_PACKAGES_V2='container'
 
 alias gh.build='DEBUG_BUILD=1 chroot-build.sh'
