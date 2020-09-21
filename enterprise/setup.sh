@@ -27,4 +27,4 @@ setup () {
 }
 
 # Check if host is an enterprise bp instance. If it is run 
-# [[ $(ghe-dev-hostname 2>/dev/null) == *".bpdev-us-east-1.github.net" ]] && setup
+[[ $(ghe-dev-hostname 2>/dev/null) == *".bpdev-us-east-1.github.net" ]] && setup
