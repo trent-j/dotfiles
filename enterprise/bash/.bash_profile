@@ -36,7 +36,7 @@ alias gh.init='docker.login && gh.build && gh.start && gh.gw && gh.configure && 
 alias gh.rebuild='gh.stop && gh.reset && gh.build && gh.start && gh.configure'
 alias gh.destroy='sudo shutdown 0'
 # alias gh.cr.update='(cd /workspace/enterprise2 && git stash && git fetch origin rms-migrations && git checkout rms-migrations)'
-alias gh.cr.update='(cd /workspace/enterprise2 && git stash && git fetch origin cr-migrations && git checkout cr-migrations)'
+alias gh.cr.update='(cd /workspace/enterprise2 && git stash && git fetch origin container-registry-migrations && git checkout container-registry-migrations)'
 
 gh.ssh () {
 
