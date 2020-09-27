@@ -15,9 +15,8 @@ alias dotfiles.update='(cd "$DOTFILES" && git pull origin master && cp "$DOTFILE
 EM_DIR='/workspace/enterprise2/enterprise-manage'
 
 alias em.dir='cd "$EM_DIR"'
-alias em.reset='(em.dir && script/setup --force)'
 alias em.init='curl -L -X POST "http://server:3654/setup/api/start" -F "license=@$EM_DIR/license.ghl" -F "password=Password1"'
-alias em.test='echo "steak"'
+alias em.reset='(em.dir && script/setup --force) && em.init'
 
 # Set rbenv
 eval "$(rbenv init -)"
