@@ -5,6 +5,7 @@ EM_DIR='/workspace/enterprise2/enterprise-manage'
 
 setup_bash_profile () {
     cp "$DIR/bash/.bash_profile" "$HOME"
+    echo '[[ -f ~/.bash_profile ]] && source ~/.bash_profile' >> ~/.bashrc
 }
 
 setup_gem_permissions () {
