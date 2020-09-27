@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# shellcheck disable=SC2034
+
 # Session utils
 alias reload='source ~/.bash_profile'
 alias ls='ls -lhpA --group-directories-first --color=auto'
@@ -12,8 +14,8 @@ alias dotfiles.update='(cd "$DOTFILES" && git pull origin master && cp "$DOTFILE
 # Enterprise Manage utils
 EM_DIR='/workspace/enterprise2/enterprise-manage'
 
-alias em='cd "$EM_DIR"'
-alias em.test='echo "hey 2"'
+alias em.dir='cd "$EM_DIR"'
+alias em.reset='(em.dir && script/setup --force)'
 
 # Set rbenv
 eval "$(rbenv init -)"
