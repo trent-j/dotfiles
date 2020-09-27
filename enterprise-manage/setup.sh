@@ -3,8 +3,8 @@
 DIR="$(cd "$(dirname "$0")" && pwd)"
 EM_DIR='/workspace/enterprise2/enterprise-manage'
 
-setup_bash () {
-    cat "$DIR/bash/.bashrc" >> ~/.bashrc
+setup_bash_profile () {
+    cp "$DIR/bash/.bash_profile" "$HOME"
 }
 
 setup_gem_permissions () {
@@ -12,7 +12,7 @@ setup_gem_permissions () {
 }
 
 setup () {
-    setup_bash
+    setup_bash_profile
     setup_gem_permissions
 }
 
