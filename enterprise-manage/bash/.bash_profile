@@ -16,7 +16,7 @@ EM_DIR='/workspace/enterprise2/enterprise-manage'
 
 alias em.dir='cd "$EM_DIR"'
 alias em.reset='(em.dir && script/setup --force)'
-alias em.test='echo "steak"'
+alias em.test='echo "steak 2"'
 
 # Set rbenv
 eval "$(rbenv init -)"
