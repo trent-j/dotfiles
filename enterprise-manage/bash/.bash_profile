@@ -13,6 +13,7 @@ alias dotfiles.update='$(cd "$DOTFILES" && git pull origin master && cp "$DOTFIL
 EM_DIR='/workspace/enterprise2/enterprise-manage'
 
 alias em='cd "$EM_DIR"'
+alias em.test='echo "hey"'
 
 # Set rbenv
 eval "$(rbenv init -)"
