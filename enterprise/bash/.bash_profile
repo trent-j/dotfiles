@@ -32,17 +32,17 @@ alias gh.configs='gh.ssh ghe_config_wrapper'
 alias gh.secrets='gh.ssh ghe_config_wrapper -s'
 alias gh.proxy='sudo update-reverse-proxy'
 # alias gh.init='gh.cr.update && docker.login && gh.build && gh.start && gh.gw && gh.configure && gh.proxy'
-alias gh.init='docker.login && gh.build && gh.start && gh.gw && gh.configure && gh.proxy'
+alias gh.init='gh.cr.update && docker.login && gh.build && gh.start && gh.gw && gh.configure && gh.proxy'
 alias gh.rebuild='gh.stop && gh.reset && gh.build && gh.start && gh.configure'
 alias gh.destroy='sudo shutdown 0'
 # alias gh.cr.update='(cd /workspace/enterprise2 && git stash && git fetch origin rms-migrations && git checkout rms-migrations)'
-alias gh.cr.update='(cd /workspace/enterprise2 && git stash && git fetch origin container-registry-migrations && git checkout container-registry-migrations)'
+alias gh.cr.update='(cd /workspace/enterprise2 && git stash && git fetch origin rm-container-registry && git checkout rm-container-registry)'
 
 gh.ssh () {
 
     BASH_PROFILE="$DOTFILES/enterprise/bash/.appliance_bash_profile"
     [[ -f $BASH_PROFILE ]] && chroot-scp.sh --to "$BASH_PROFILE" /home/admin/.bash_profile > /dev/null
-    
+
     if [[ $# -eq 0 ]]; then
         chroot-ssh.sh
     else
