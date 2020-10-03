@@ -27,8 +27,8 @@ env_vars=(
 #   - The first parameter to this function should be the path to the users home directory (defaults to '/root')
 setup_ssh_config () {
 
-    CONFIG="$("$(setup_ssh_dir "$1")/config" && echo "$_")"
-    
+    CONFIG="$(setup_ssh_dir "$1")/config"
+
     echo "$ssh_config" | sudo tee "$CONFIG"
 
     for env_var in "${env_vars[@]}"; do
@@ -61,31 +61,7 @@ restart_ssh () {
     sudo systemctl restart ssh
 }
 
-# # Sets up SSH. Enables root login and sets up SSH to send and recieve the environment variables defined in $env_vars
-# setup_ssh () {
-
-#     local home
-#     local keys
-
-#     while (( "$#" )); do
-#         case "$1" in
-#             -h | --home) home="$2" && shift 2;;
-#             -k | --keys) keys="$2" && shift 2;;
-#         esac
-#     done
-
-#     [[ -z $keys ]] && echo "path to authorized keys is required" && exit 1
-
-#     setup_root_login "$keys"
-#     setup_accept_env_vars
-#     setup_ssh_config
-
-#     # If home directory supplied setup ssh config in specified directory
-#     [[ -n $home ]] && setup_ssh_config "$home"
-
-#     restart_ssh
-# }
-
+# Sets up SSH. Enables root login and sets up SSH to send and recieve the environment variables defined in $env_vars
 while (( "$#" )); do
     case "$1" in
         -h | --home) home="$2" && shift 2;;

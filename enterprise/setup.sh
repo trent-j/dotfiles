@@ -2,9 +2,6 @@
 
 DIR="$(cd "$(dirname "$0")" && pwd)"
 
-# shellcheck disable=SC1090
-# . "$DIR/ssh/setup.sh"
-
 setup_bash_profile () {
     sudo cp "$DIR/bash/.bash_profile" /root
 }
