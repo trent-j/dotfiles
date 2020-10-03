@@ -73,5 +73,4 @@ done
 setup_root_login "$keys"
 setup_accept_env_vars
 setup_ssh_config
-
 restart_ssh

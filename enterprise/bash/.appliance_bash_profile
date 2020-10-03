@@ -6,10 +6,10 @@ alias ls='ls -lhpA --group-directories-first --color=auto'
 alias root='sudo su -l'
 
 # Enterprise utils
-alias gh.configs='ghe_config_wrapper'
-alias gh.secrets='ghe_config_wrapper -s'
+alias gh.configs='gh.config.wrapper'
+alias gh.secrets='gh.config.wrapper -s'
 
-ghe_config_wrapper () {
+gh.config.wrapper () {
 
     local OPTIND
 
@@ -27,4 +27,12 @@ ghe_config_wrapper () {
     else
         ghe-config --get-regexp "$KEY_PREFIX$1"
     fi
+}
+
+gh.s3.setup () {
+    ghe-config 'secrets.packages.s3-region' "$REGISTRY_S3_REGION"
+    ghe-config 'secrets.packages.s3-bucket' "$REGISTRY_S3_BUCKET"
+    ghe-config 'secrets.packages.aws-secret-key' "$REGISTRY_S3_SECRET_KEY"
+    ghe-config 'secrets.packages.aws-access-key' "$REGISTRY_S3_ACCESS_KEY"
+    ghe-config-apply
 }
