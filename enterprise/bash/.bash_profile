@@ -4,8 +4,8 @@
 export DOTFILES='/workspace/.dotfiles'
 
 alias reload='source ~/.bash_profile'
-alias ls='ls -lhpA --group-directories-first'
-alias dotfiles.update='cd "$DOTFILES" && git pull origin master && cp "$DOTFILES/enterprise/bash/.bash_profile" ~/ && reload'
+alias ls='ls -lhpA --group-directories-first --color=auto'
+alias dotfiles.update='(cd "$DOTFILES" && git pull origin master && cp "$DOTFILES/enterprise/bash/.bash_profile" ~/) && reload'
 
 # Docker utils
 alias docker.octo.login='docker login octofactory.githubapp.com -u trent-j -p "$OCTOFACTORY_TOKEN"'
