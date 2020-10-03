@@ -3,6 +3,7 @@
 # Session utils
 alias reload='source ~/.bash_profile'
 alias ls='ls -lhpA --group-directories-first --color=auto'
+alias root='sudo su -l'
 
 # Enterprise utils
 alias gh.configs='ghe_config_wrapper'
