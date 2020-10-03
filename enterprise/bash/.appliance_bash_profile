@@ -30,6 +30,7 @@ gh.config.wrapper () {
 }
 
 gh.s3.setup () {
+    ghe-config 'secrets.packages.blob-storage-type' 's3'
     ghe-config 'secrets.packages.s3-region' "$REGISTRY_S3_REGION"
     ghe-config 'secrets.packages.s3-bucket' "$REGISTRY_S3_BUCKET"
     ghe-config 'secrets.packages.aws-secret-key' "$REGISTRY_S3_SECRET_KEY"
