@@ -3,7 +3,7 @@
 DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # shellcheck disable=SC1090
-. "$DIR/ssh/setup.sh"
+# . "$DIR/ssh/setup.sh"
 
 setup_bash_profile () {
     sudo cp "$DIR/bash/.bash_profile" /root
@@ -11,6 +11,10 @@ setup_bash_profile () {
 
 setup_git () {
     sudo cp "$DIR/git/.gitconfig" /root
+}
+
+setup_ssh () {
+    "$DIR"/ssh/setup.sh --keys /workspace/.ssh/authorized_keys
 }
 
 # Allow root login
@@ -29,7 +33,7 @@ setup_git () {
 setup () {
     setup_git
     setup_bash_profile
-    setup_ssh --keys /workspace/.ssh/authorized_keys
+    setup_ssh
 }
 
 # Check if host is an enterprise bp instance. If it is run
