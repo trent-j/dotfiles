@@ -16,5 +16,3 @@ setup () {
     setup_bash_profile
     setup_gem_permissions
 }
-
-setup
