@@ -8,9 +8,10 @@ alias ls='ls -lhpA --group-directories-first --color=auto'
 alias dotfiles.update='(cd "$DOTFILES" && git pull origin master && cp "$DOTFILES/enterprise/bash/.bash_profile" ~/) && reload'
 
 # Docker utils
-alias docker.octo.login='docker login octofactory.githubapp.com -u trent-j -p "$OCTOFACTORY_TOKEN"'
-alias docker.gpr.login='docker login https://docker.pkg.github.com -u trent-j -p "$GH_PAT"'
-alias docker.ghcr.login='docker login containers.pkg.github.com -u trent-j -p "$GH_PAT"'
+d.login () { echo "$2" | docker login "$1" -u "$GH_USER" --password-stdin; }
+alias docker.octo.login='d.login octofactory.githubapp.com "$OCTOFACTORY_TOKEN"'
+alias docker.gpr.login='d.login https://docker.pkg.github.com "$GH_PAT"'
+alias docker.ghcr.login='d.login containers.pkg.github.com "$GH_PAT"'
 alias docker.login='docker.octo.login && docker.gpr.login && docker.ghcr.login'
 
 # Enterprise utils
@@ -21,7 +22,7 @@ export ENABLE_ISOLATION=1
 export ENABLE_PACKAGES=1
 
 alias gh.build='DEBUG_BUILD=1 chroot-build.sh'
-alias gh.configure='chroot-configure.sh && gh.ssh setup_ssh'
+alias gh.configure='chroot-configure.sh && gh.appliance.setup'
 alias gh.start='chroot-start.sh'
 alias gh.stop='chroot-stop.sh'
 alias gh.reset='chroot-reset.sh'
@@ -35,10 +36,18 @@ alias gh.rebuild='gh.stop && gh.reset && gh.build && gh.start && gh.configure'
 alias gh.destroy='sudo shutdown 0'
 alias gh.cr.update='(cd /workspace/enterprise2 && git stash && git fetch origin subdomain-proxy && git checkout subdomain-proxy)'
 
-gh.ssh () {
+gh.appliance.setup () {
 
     BASH_PROFILE="$DOTFILES/enterprise/bash/.appliance_bash_profile"
-    [[ -f $BASH_PROFILE ]] && chroot-scp.sh --to "$BASH_PROFILE" /home/admin/.bash_profile > /dev/null
+    chroot-scp.sh --to "$BASH_PROFILE" /home/admin/.bash_profile > /dev/null
+    gh.ssh 'sudo cp /home/admin/.bash_profile /root/.bash_profile'
+
+    SSH_SETUP="$DOTFILES/enterprise/ssh/setup.sh"
+    chroot-scp.sh --to "$SSH_SETUP" /tmp/ssh-setup.sh > /dev/null
+    gh.ssh '/tmp/ssh-setup.sh --keys /home/admin/.ssh/authorized_keys > /dev/null'
+}
+
+gh.ssh () {
 
     if [[ $# -eq 0 ]]; then
         chroot-ssh.sh

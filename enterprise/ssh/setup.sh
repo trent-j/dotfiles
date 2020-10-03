@@ -64,7 +64,6 @@ restart_ssh () {
 # Sets up SSH. Enables root login and sets up SSH to send and recieve the environment variables defined in $env_vars
 while (( "$#" )); do
     case "$1" in
-        -h | --home) home="$2" && shift 2;;
         -k | --keys) keys="$2" && shift 2;;
     esac
 done
@@ -74,8 +73,5 @@ done
 setup_root_login "$keys"
 setup_accept_env_vars
 setup_ssh_config
-
-# If home directory supplied setup ssh config in specified directory
-[[ -n $home ]] && setup_ssh_config "$home"
 
 restart_ssh
