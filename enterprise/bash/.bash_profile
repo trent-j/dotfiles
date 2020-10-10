@@ -17,7 +17,7 @@ alias docker.login='docker.octo.login && docker.gpr.login && docker.ghcr.login'
 # Enterprise utils
 export PATH="$PATH:/workspace/enterprise2"
 export OVERLAY_VM_FILES='yes'
-export ENABLE_ISOLATION=1
+# export ENABLE_ISOLATION=1
 export ENABLE_PACKAGES=1
 
 alias gh.build='DEBUG_BUILD=1 chroot-build.sh'
@@ -30,10 +30,10 @@ alias gh.gw='chroot-add-gw.sh'
 alias gh.configs='gh.ssh gh.config.wrapper'
 alias gh.secrets='gh.ssh gh.config.wrapper -s'
 alias gh.proxy='sudo update-reverse-proxy'
-alias gh.init='docker.login && gh.build && gh.start && gh.gw && gh.configure && gh.proxy'
+alias gh.init='gh.cr.update && docker.login && gh.build && gh.start && gh.gw && gh.configure && gh.proxy'
 alias gh.rebuild='gh.stop && gh.reset && gh.build && gh.start && gh.configure'
 alias gh.destroy='sudo shutdown 0'
-alias gh.cr.update='(cd /workspace/enterprise2 && git stash && git fetch origin subdomain-proxy && git checkout subdomain-proxy)'
+alias gh.cr.update='(cd /workspace/enterprise2 && git stash && git fetch origin packages-port-poc && git checkout packages-port-poc)'
 
 gh.ssh () {
 
