@@ -8,7 +8,7 @@ alias ls='ls -lhpA --group-directories-first --color=auto'
 alias dotfiles.update='(cd "$DOTFILES" && git pull origin master && cp "$DOTFILES/enterprise/bash/.bash_profile" ~/) && reload'
 
 # Docker utils
-d.login () { echo "$2" | docker login "$1" -u "$GH_USER" --password-stdin; }
+d.login () { echo "$2" | docker login "$1" --username "$GH_USER" --password-stdin; }
 alias docker.octo.login='d.login octofactory.githubapp.com "$OCTOFACTORY_TOKEN"'
 alias docker.gpr.login='d.login https://docker.pkg.github.com "$GH_PAT"'
 alias docker.ghcr.login='d.login containers.pkg.github.com "$GH_PAT"'
