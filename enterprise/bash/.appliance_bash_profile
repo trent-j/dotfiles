@@ -35,5 +35,10 @@ gh.s3.setup () {
     ghe-config 'secrets.packages.s3-bucket' "$REGISTRY_S3_BUCKET"
     ghe-config 'secrets.packages.aws-secret-key' "$REGISTRY_S3_SECRET_KEY"
     ghe-config 'secrets.packages.aws-access-key' "$REGISTRY_S3_ACCESS_KEY"
+    ghe-config 'secrets.packages.docker-enabled' 'true'
+    ghe-config 'secrets.packages.maven-enabled' 'true'
+    ghe-config 'secrets.packages.npm-enabled' 'true'
+    ghe-config 'secrets.packages.rubygems-enabled' 'true'
+    ghe-config 'secrets.packages.nuget-enabled' 'true'
     ghe-config-apply
 }
