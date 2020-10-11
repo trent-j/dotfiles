@@ -21,8 +21,7 @@ export OVERLAY_VM_FILES='yes'
 export ENABLE_PACKAGES=1
 
 alias gh.build='DEBUG_BUILD=1 chroot-build.sh'
-# alias gh.configure='chroot-configure.sh && gh.appliance.setup'
-alias gh.configure='gh.appliance.setup && chroot-configure.sh'
+alias gh.configure='chroot-configure.sh && gh.appliance.setup'
 alias gh.start='chroot-start.sh'
 alias gh.stop='chroot-stop.sh'
 alias gh.reset='chroot-reset.sh'

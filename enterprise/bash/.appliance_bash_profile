@@ -40,5 +40,5 @@ gh.s3.setup () {
     ghe-config 'secrets.packages.npm-enabled' 'true'
     ghe-config 'secrets.packages.rubygems-enabled' 'true'
     ghe-config 'secrets.packages.nuget-enabled' 'true'
-    # ghe-config-apply
+    sudo ghe-config-apply
 }
