@@ -21,7 +21,8 @@ export OVERLAY_VM_FILES='yes'
 export ENABLE_PACKAGES=1
 
 alias gh.build='DEBUG_BUILD=1 chroot-build.sh'
-alias gh.configure='chroot-configure.sh && gh.appliance.setup'
+# alias gh.configure='chroot-configure.sh && gh.appliance.setup'
+alias gh.configure='gh.ssh "gh.s3.setup" && chroot-configure.sh && gh.appliance.setup'
 alias gh.start='chroot-start.sh'
 alias gh.stop='chroot-stop.sh'
 alias gh.reset='chroot-reset.sh'
@@ -57,5 +58,5 @@ gh.appliance.setup () {
     gh.ssh '/tmp/ssh-setup.sh --keys /home/admin/.ssh/authorized_keys > /dev/null'
 
     # Set S3 configs and reload packages
-    gh.ssh 'gh.s3.setup'
+    # gh.ssh 'gh.s3.setup'
 }
