@@ -31,7 +31,7 @@ alias gh.configs='gh.ssh gh.config.wrapper'
 alias gh.secrets='gh.ssh gh.config.wrapper -s'
 alias gh.proxy='sudo update-reverse-proxy'
 alias gh.init='gh.cr.update && docker.login && gh.build && gh.start && gh.gw && gh.configure && gh.proxy'
-alias gh.rebuild='gh.stop && gh.reset && gh.build && gh.start && gh.configure'
+alias gh.rebuild='gh.stop && gh.reset && gh.build && gh.start && gh.configure && gh.gw'
 alias gh.destroy='sudo shutdown 0'
 alias gh.cr.update='(cd /workspace/enterprise2 && git stash && git fetch origin packages-port-poc && git checkout packages-port-poc)'
 
