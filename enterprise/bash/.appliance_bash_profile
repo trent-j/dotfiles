@@ -9,7 +9,15 @@ alias root='sudo su -l'
 alias gh.configs='gh.config.wrapper'
 alias gh.secrets='gh.config.wrapper -s'
 
-gh.config-apply () { sudo ghe-config-apply "$1"; }
+gh.config-apply () {
+
+    if [[ -z $1 ]]; then
+        sudo ghe-config-apply
+    else
+        sudo ghe-config-apply "$1"
+    fi
+}
+
 gh.config-apply.system () { gh.config-apply --phase-1; }
 gh.config-apply.migrations () { gh.config-apply --phase-2; }
 gh.config-apply.applications () { gh.config-apply --phase-3; }
