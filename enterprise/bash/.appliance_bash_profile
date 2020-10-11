@@ -8,6 +8,7 @@ alias root='sudo su -l'
 # Enterprise utils
 alias gh.configs='gh.config.wrapper'
 alias gh.secrets='gh.config.wrapper -s'
+alias gh.config.log='tail -f /data/user/common/ghe-config.log'
 
 gh.config.wrapper () {
 
