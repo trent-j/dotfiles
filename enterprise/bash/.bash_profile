@@ -38,7 +38,7 @@ alias gh.config-apply='gh.ssh gh.config-apply'
 alias gh.config-apply.system='gh.ssh gh.config-apply.system'
 alias gh.config-apply.migrations='gh.ssh gh.config-apply.migrations'
 alias gh.config-apply.applications='gh.ssh gh.config-apply.applications'
-alias gh.config-apply.log='gh.ssh gh.config-apply.log'
+alias gh.config-apply.log='chroot-ssh.sh "tail -f /data/user/common/ghe-config.log"'
 
 gh.ssh () {
 
