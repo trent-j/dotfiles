@@ -8,7 +8,12 @@ alias root='sudo su -l'
 # Enterprise utils
 alias gh.configs='gh.config.wrapper'
 alias gh.secrets='gh.config.wrapper -s'
-alias gh.config.log='tail -f /data/user/common/ghe-config.log'
+
+gh.config-apply () { sudo ghe-config-apply "$1"; }
+gh.config-apply.system () { gh.config-apply --phase-1; }
+gh.config-apply.migrations () { gh.config-apply --phase-2; }
+gh.config-apply.applications () { gh.config-apply --phase-3; }
+gh.config-apply.log () { tail -f /data/user/common/ghe-config.log; }
 
 gh.config.wrapper () {
 
@@ -41,5 +46,5 @@ gh.s3.setup () {
     ghe-config 'secrets.packages.npm-enabled' 'true'
     ghe-config 'secrets.packages.rubygems-enabled' 'true'
     ghe-config 'secrets.packages.nuget-enabled' 'true'
-    sudo ghe-config-apply
+    gh.config-apply.applications
 }

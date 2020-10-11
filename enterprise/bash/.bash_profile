@@ -34,6 +34,11 @@ alias gh.init='gh.cr.update && docker.login && gh.build && gh.start && gh.gw && 
 alias gh.rebuild='gh.stop && gh.reset && gh.build && gh.start && gh.gw && gh.configure'
 alias gh.destroy='sudo shutdown 0'
 alias gh.cr.update='(cd /workspace/enterprise2 && git stash && git fetch origin packages-port-poc && git checkout packages-port-poc)'
+alias gh.config-apply='gh.ssh gh.config-apply'
+alias gh.config-apply.system='gh.ssh gh.config-apply.system'
+alias gh.config-apply.migrations='gh.ssh gh.config-apply.migrations'
+alias gh.config-apply.applications='gh.ssh gh.config-apply.applications'
+alias gh.config-apply.log='gh.ssh gh.config-apply.log'
 
 gh.ssh () {
 
