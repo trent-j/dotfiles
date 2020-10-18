@@ -14,10 +14,15 @@ setup_ssh () {
     "$DIR"/ssh/setup.sh --keys /workspace/.ssh/authorized_keys
 }
 
+setup_shellcheck () {
+    sudo apt-get install shellcheck
+}
+
 setup () {
     setup_git
     setup_bash_profile
     setup_ssh
+    setup_shellcheck
 }
 
 # Check if host is an enterprise bp instance. If it is run
