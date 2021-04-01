@@ -62,5 +62,5 @@ gh.appliance.setup () {
     gh.ssh '/tmp/ssh-setup.sh --keys /home/admin/.ssh/authorized_keys > /dev/null'
 
     # Set S3 configs and reload packages
-    #gh.ssh 'gh.s3.setup'
+    gh.ssh 'gh.s3.setup'
 }
