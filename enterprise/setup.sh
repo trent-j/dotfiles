@@ -11,7 +11,7 @@ setup_git () {
 }
 
 setup_ssh () {
-    sudo "$DIR/ssh/setup.sh --keys /workspace/.ssh/authorized_keys"
+    KEYS='/workspace/.ssh/authorized_keys' "$DIR/ssh/setup.sh"
 }
 
 setup_shellcheck () {

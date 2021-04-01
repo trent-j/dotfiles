@@ -72,15 +72,15 @@ echo "ssh setup args 1: $1, 2: $2"
 # Sets up SSH. Enables root login and sets up SSH to send and recieve the environment variables defined in $env_vars
 while (( "$#" )); do
     case "$1" in
-        -k | --keys) keys="$2" && shift 2;;
+        -k | --keys) KEYS="$2" && shift 2;;
     esac
 done
 
-echo "keys: $keys"
+echo "keys: $KEYS"
 
-[[ -z $keys ]] && echo "path to authorized keys is required" && exit 1
+[[ -z $KEYS ]] && echo "path to authorized keys is required" && exit 1
 
-setup_root_login "$keys"
+setup_root_login "$KEYS"
 setup_accept_env_vars
 setup_ssh_config
 restart_ssh
