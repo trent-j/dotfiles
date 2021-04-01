@@ -17,10 +17,10 @@ env_vars=(
     'GH_USER'
     'GH_PAT'
     'OCTOFACTORY_TOKEN'
-    'REGISTRY_S3_BUCKET'
-    'REGISTRY_S3_REGION'
-    'REGISTRY_S3_SECRET_KEY'
-    'REGISTRY_S3_ACCESS_KEY'
+    'GHE_S3_BUCKET'
+    'GHE_S3_REGION'
+    'GHE_S3_SECRET_KEY'
+    'GHE_S3_ACCESS_KEY'
 )
 
 # Setup users ssh config file (
