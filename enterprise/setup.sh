@@ -11,7 +11,7 @@ setup_git () {
 }
 
 setup_ssh () {
-    "$DIR"/ssh/setup.sh --keys /workspace/.ssh/authorized_keys
+    /bin/bash "$DIR/ssh/setup.sh" --keys /workspace/.ssh/authorized_keys
 }
 
 setup_shellcheck () {
