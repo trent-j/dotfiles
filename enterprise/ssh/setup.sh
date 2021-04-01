@@ -61,12 +61,22 @@ restart_ssh () {
     sudo systemctl restart ssh
 }
 
+echo "ls /workspace"
+ls -la /workspace
+
+echo "ls /workspace/.ssh"
+ls -la /workspace/.ssh
+
+echo "ssh setup args 1: $1, 2: $2"
+
 # Sets up SSH. Enables root login and sets up SSH to send and recieve the environment variables defined in $env_vars
 while (( "$#" )); do
     case "$1" in
         -k | --keys) keys="$2" && shift 2;;
     esac
 done
+
+echo "keys: $keys"
 
 [[ -z $keys ]] && echo "path to authorized keys is required" && exit 1
 
