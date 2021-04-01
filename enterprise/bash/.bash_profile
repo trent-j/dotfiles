@@ -16,7 +16,7 @@ alias docker.login='docker.octo.login && docker.gpr.login && docker.ghcr.login'
 
 # Enterprise utils
 export PATH="$PATH:/workspace/enterprise2"
-export OVERLAY_VM_FILES='yes'
+#export OVERLAY_VM_FILES='yes'
 export ENABLE_ISOLATION=1
 export ENABLE_PACKAGES=1
 
