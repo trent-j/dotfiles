@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 DIR="$(cd "$(dirname "$0")" && pwd)"
 
 setup_bash_profile () {
