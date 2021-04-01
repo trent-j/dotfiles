@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+set -e
 
 DIR="$(cd "$(dirname "$0")" && pwd)"
 
@@ -13,9 +13,7 @@ setup_git () {
 }
 
 setup_ssh () {
-    sudo chmod +x "$DIR/ssh/setup.sh" && "$_" --keys '/workspace/.ssh/authorized_keys'
-    # "$DIR/ssh/setup.sh" --keys '/workspace/.ssh/authorized_keys'
-    #KEYS='/workspace/.ssh/authorized_keys' "$DIR/ssh/setup.sh"
+    sudo "$DIR/ssh/setup.sh" --keys '/workspace/.ssh/authorized_keys'
 }
 
 setup_shellcheck () {

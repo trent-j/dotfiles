@@ -3,7 +3,6 @@
 # shellcheck disable=SC2120
 
 set -e
-set -x
 
 ssh_config=$(cat << EOF
 Host *
