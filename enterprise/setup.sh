@@ -13,7 +13,7 @@ setup_git () {
 }
 
 setup_ssh () {
-    "$DIR/ssh/setup.sh" --keys '/workspace/.ssh/authorized_keys'
+    sudo chmod +x "$DIR/ssh/setup.sh" && "$_" --keys '/workspace/.ssh/authorized_keys'
 }
 
 setup_shellcheck () {
