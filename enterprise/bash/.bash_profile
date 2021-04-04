@@ -45,7 +45,7 @@ alias gh.config-apply.log='chroot-ssh.sh "tail -f /data/user/common/ghe-config.l
 
 gh.configure () {
     gh.appliance.init
-    gh.ssh "systemctl is-active enterprise-manage" --attempts 100 --interval 3 || echo "enterprise-manage never came up" && exit 1
+    gh.ssh "systemctl is-active enterprise-manage" --attempts 100 --interval 3 || { echo "enterprise-manage never came up" && exit 1; }
     chroot-configure.sh
 }
 
