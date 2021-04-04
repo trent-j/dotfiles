@@ -24,7 +24,6 @@ export ENABLE_ISOLATION=1
 export ENABLE_PACKAGES=1
 
 alias gh.build='DEBUG_BUILD=1 chroot-build.sh'
-alias gh.configure='gh.appliance.init && chroot-configure.sh'
 alias gh.start='chroot-start.sh'
 alias gh.stop='chroot-stop.sh'
 alias gh.reset='chroot-reset.sh'
@@ -42,6 +41,13 @@ alias gh.config-apply.system='gh.ssh gh.config-apply.system'
 alias gh.config-apply.migrations='gh.ssh gh.config-apply.migrations'
 alias gh.config-apply.applications='gh.ssh gh.config-apply.applications'
 alias gh.config-apply.log='chroot-ssh.sh "tail -f /data/user/common/ghe-config.log"'
+
+gh.configure () {
+    gh.appliance.init
+    echo "waiting for enterprise-manage to come up"
+    gh.ssh "systemctl is-active enterprise-manage2" --attempts 100 --interval 3 || echo "enterprise-manage never came up" && exit 1
+    chroot-configure.sh
+}
 
 gh.ssh () {
 
@@ -86,7 +92,7 @@ gh.appliance.init () {
     gh.ssh '/tmp/ssh-setup.sh --keys /home/admin/.ssh/authorized_keys > /dev/null'
 
     # Set azure secrets
-    gh.ssh 'gh.azure.setup' --attempts 10 --interval 3
+    gh.ssh 'gh.azure.setup' --attempts 100 --interval 3
 }
 
 gh.generate-pat () { gh.ssh 'gh.generate-pat'; }
