@@ -32,7 +32,7 @@ alias gh.gw='chroot-add-gw.sh'
 alias gh.configs='gh.ssh gh.config.wrapper'
 alias gh.secrets='gh.ssh gh.config.wrapper -s'
 alias gh.proxy='sudo update-reverse-proxy'
-alias gh.init='docker.login && gh.build && gh.start && gh.gw && sleep 15 && gh.configure && gh.proxy'
+alias gh.init='docker.login && gh.build && gh.start && gh.gw && gh.configure && gh.proxy'
 alias gh.rebuild='gh.stop && gh.reset && gh.build && gh.start && gh.gw && gh.configure'
 alias gh.destroy='sudo shutdown 0'
 alias gh.git.init='(cd /workspace/enterprise2 && git stash && git.checkout packages-subdomain-routes)'
@@ -44,8 +44,7 @@ alias gh.config-apply.log='chroot-ssh.sh "tail -f /data/user/common/ghe-config.l
 
 gh.configure () {
     gh.appliance.init
-    echo "waiting for enterprise-manage to come up"
-    gh.ssh "systemctl is-active enterprise-manage2" --attempts 100 --interval 3 || echo "enterprise-manage never came up" && exit 1
+    gh.ssh "systemctl is-active enterprise-manage" --attempts 100 --interval 3 || echo "enterprise-manage never came up" && exit 1
     chroot-configure.sh
 }
 
