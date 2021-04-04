@@ -47,28 +47,30 @@ gh.ssh () {
 
     [[ $# -eq 0 ]] && chroot-ssh.sh && return 0
 
-    local cmd="$1"
+    local CMD="$1"
+    local ATTEMPTS=1
+    local INTERVAL=1
 
     shift 1
 
     while (( "$#" )); do
         case "$1" in
-            --attempts) attempts="$2"; shift 2;;
-            --interval) interval="$2"; shift 2;;
+            --attempts) ATTEMPTS="$2"; shift 2;;
+            --interval) INTERVAL="$2"; shift 2;;
             *) shift 1;;
         esac
     done
 
-    for i in $(seq 1 "${attempts-1}"); do
+    for i in $(seq 1 "$ATTEMPTS"); do
 
-        chroot-ssh.sh ". .bash_profile && $cmd" && return 0
+        chroot-ssh.sh ". .bash_profile && $CMD" && return 0
 
-        if [[ $i -eq ${attempts-1} ]]; then
+        if [[ $i -eq $ATTEMPTS ]]; then
             echo 'Failed to execute SSH command, exhausted retries'
             return 1
         else
-            echo "Retrying failed SSH command. retry attempt: $i, interval: $interval"
-            sleep "${interval-1}"
+            echo "Retrying failed SSH command. retry attempt: $i, interval: $INTERVAL"
+            sleep "$INTERVAL"
         fi
     done
 }
