@@ -9,6 +9,7 @@ alias dotfiles.update='(cd "$DOTFILES" && git pull origin master && cp "$DOTFILE
 
 # Git utils
 git.checkout () { git fetch origin "$1" && git checkout "$1"; }
+git.ignore-build () { echo 'root-default' >> /workspace/enterprise2/.gitignore; }
 
 # Docker utils
 d.login () { echo "$2" | docker login "$1" --username "$GH_USER" --password-stdin; }
@@ -32,7 +33,7 @@ alias gh.gw='chroot-add-gw.sh'
 alias gh.configs='gh.ssh gh.config.wrapper'
 alias gh.secrets='gh.ssh gh.config.wrapper -s'
 alias gh.proxy='sudo update-reverse-proxy'
-alias gh.init='docker.login && gh.build && gh.start && gh.gw && gh.configure && gh.proxy'
+alias gh.init='git.ignore-build && docker.login && gh.build && gh.start && gh.gw && gh.configure && gh.proxy'
 alias gh.rebuild='gh.stop && gh.reset && gh.build && gh.start && gh.gw && gh.configure'
 alias gh.destroy='sudo shutdown 0'
 alias gh.git.init='(cd /workspace/enterprise2 && git stash && git.checkout packages-subdomain-routes)'
