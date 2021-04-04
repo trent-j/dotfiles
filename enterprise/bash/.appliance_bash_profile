@@ -43,29 +43,29 @@ gh.config.wrapper () {
     fi
 }
 
-gh.s3.setup () {
-    ghe-config 'secrets.packages.blob-storage-type' 's3'
-    ghe-config 'secrets.packages.s3-region' "$GHE_S3_BUCKET"
-    ghe-config 'secrets.packages.s3-bucket' "$GHE_S3_REGION"
-    ghe-config 'secrets.packages.aws-secret-key' "$GHE_S3_SECRET_KEY"
-    ghe-config 'secrets.packages.aws-access-key' "$GHE_S3_ACCESS_KEY"
-    ghe-config 'secrets.packages.docker-enabled' 'true'
-    ghe-config 'secrets.packages.maven-enabled' 'true'
-    ghe-config 'secrets.packages.npm-enabled' 'true'
-    ghe-config 'secrets.packages.rubygems-enabled' 'true'
-    ghe-config 'secrets.packages.nuget-enabled' 'true'
-    gh.config-apply
-}
-
-gh.azure.setup () {
-    ghe-config 'secrets.packages.blob-storage-type' 'azure'
-    ghe-config 'secrets.packages.azure-container-name' 'migrationstest'
-    ghe-config 'secrets.packages.azure-connection-string' 'migrationstest'
-}
-
 gh.set-packages-secrets () {
 
     while read -ra secret; do
         ghe-config "secrets.packages.${secret[0]}" "${secret[1]}"
     done <<< "$(echo "$1" | sed '/^\s*$/d')"
+}
+
+gh.s3.setup () {
+
+    gh.set-packages-secrets "
+        blob-storage-type s3
+        s3-region $GHE_S3_REGION
+        s3-bucket $GHE_S3_BUCKET
+        aws-secret-key $GHE_S3_SECRET_KEY
+        aws-access-key $GHE_S3_ACCESS_KEY
+    "
+}
+
+gh.azure.setup () {
+
+    gh.set-packages-secrets "
+        blob-storage-type azure
+        azure-container-name $GHE_AZURE_CONTAINER_NAME
+        azure-connection-string $GHE_AZURE_CONNECTION_STRING
+    "
 }

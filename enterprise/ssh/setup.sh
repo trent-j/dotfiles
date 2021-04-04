@@ -21,6 +21,8 @@ env_vars=(
     'GHE_S3_REGION'
     'GHE_S3_SECRET_KEY'
     'GHE_S3_ACCESS_KEY'
+    'GHE_AZURE_CONTAINER_NAME'
+    'GHE_AZURE_CONNECTION_STRING'
 )
 
 # Setup users ssh config file (
