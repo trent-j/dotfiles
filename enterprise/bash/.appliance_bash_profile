@@ -69,3 +69,7 @@ gh.azure.setup () {
         azure-connection-string $GHE_AZURE_CONNECTION_STRING
     "
 }
+
+gh.generate-pat () {
+    github-env bin/rake enterprise:packages:init_packages_ci[ghe-admin]
+}

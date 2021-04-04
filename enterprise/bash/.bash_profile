@@ -45,11 +45,32 @@ alias gh.config-apply.log='chroot-ssh.sh "tail -f /data/user/common/ghe-config.l
 
 gh.ssh () {
 
-    if [[ $# -eq 0 ]]; then
-        chroot-ssh.sh
-    else
-        chroot-ssh.sh ". .bash_profile && $*"
-    fi
+    [[ $# -eq 0 ]] && chroot-ssh.sh && return 0
+
+    local cmd="$1"
+
+    shift 1
+
+    while (( "$#" )); do
+        case "$1" in
+            --attempts) attempts="$2"; shift 2;;
+            --interval) interval="$2"; shift 2;;
+            *) shift 1;;
+        esac
+    done
+
+    for i in $(seq 1 "${attempts-1}"); do
+
+        chroot-ssh.sh ". .bash_profile && $cmd" && return 0
+
+        if [[ $i -eq ${attempts-1} ]]; then
+            echo 'Failed to execute SSH command, exhausted retries'
+            return 1
+        else
+            echo "Retrying failed SSH command. retry attempt: $i, interval: $interval"
+            sleep "${interval-1}"
+        fi
+    done
 }
 
 gh.appliance.init () {
@@ -62,6 +83,8 @@ gh.appliance.init () {
     chroot-scp.sh --to "$DOTFILES/enterprise/ssh/setup.sh" /tmp/ssh-setup.sh > /dev/null
     gh.ssh '/tmp/ssh-setup.sh --keys /home/admin/.ssh/authorized_keys > /dev/null'
 
-    # Set S3 configs and reload packages
-    gh.ssh 'gh.azure.setup'
+    # Set azure secrets
+    gh.ssh 'gh.azure.setup' --attempts 10 --interval 3
 }
+
+gh.generate-pat () { gh.ssh 'gh.generate-pat'; }
