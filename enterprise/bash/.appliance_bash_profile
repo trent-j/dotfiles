@@ -56,3 +56,16 @@ gh.s3.setup () {
     ghe-config 'secrets.packages.nuget-enabled' 'true'
     gh.config-apply
 }
+
+gh.azure.setup () {
+    ghe-config 'secrets.packages.blob-storage-type' 'azure'
+    ghe-config 'secrets.packages.azure-container-name' 'migrationstest'
+    ghe-config 'secrets.packages.azure-connection-string' 'migrationstest'
+}
+
+gh.set-packages-secrets () {
+
+    while read -ra secret; do
+        ghe-config "secrets.packages.${secret[0]}" "${secret[1]}"
+    done <<< "$(echo "$1" | sed '/^\s*$/d')"
+}
