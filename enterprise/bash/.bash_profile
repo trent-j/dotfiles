@@ -20,12 +20,14 @@ export PATH="$PATH:/workspace/enterprise2"
 export ENABLE_ISOLATION=1
 export ENABLE_PACKAGES=1
 
+as-build () { su build -c "$1"; }
+
 alias gh.build='DEBUG_BUILD=1 chroot-build.sh'
 alias gh.configure='chroot-configure.sh && gh.appliance.setup'
 alias gh.start='chroot-start.sh'
 alias gh.stop='chroot-stop.sh'
 alias gh.reset='chroot-reset.sh'
-alias gh.info='chroot-info.sh'
+alias gh.info='as-build chroot-info.sh'
 alias gh.gw='chroot-add-gw.sh'
 alias gh.configs='gh.ssh gh.config.wrapper'
 alias gh.secrets='gh.ssh gh.config.wrapper -s'
