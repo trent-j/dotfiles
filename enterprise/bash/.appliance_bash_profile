@@ -62,12 +62,16 @@ gh.s3.setup () {
 }
 
 gh.azure.setup () {
-
     gh.set-packages-secrets "
         blob-storage-type azure
         azure-container-name $GHE_AZURE_CONTAINER_NAME
-        azure-connection-string $GHE_AZURE_CONNECTION_STRING
     "
+
+    # gh.set-packages-secrets "
+    #     blob-storage-type azure
+    #     azure-container-name $GHE_AZURE_CONTAINER_NAME
+    #     azure-connection-string $GHE_AZURE_CONNECTION_STRING
+    # "
 }
 
 gh.generate-pat () {
