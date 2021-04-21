@@ -92,8 +92,7 @@ gh.appliance.init () {
     gh.ssh '/tmp/ssh-setup.sh --keys /home/admin/.ssh/authorized_keys > /dev/null'
 
     # Set azure secrets
-    # gh.ssh 'gh.azure.setup' --attempts 100 --interval 3
-    gh.ssh 'gh.s3.setup' --attempts 100 --interval 3
+    gh.ssh 'gh.azure.setup' --attempts 100 --interval 3
 }
 
 gh.generate-pat () { gh.ssh 'gh.generate-pat'; }
